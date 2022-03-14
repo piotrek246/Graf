@@ -14,5 +14,5 @@ struct Graph{
 };
 
 double randFrom(double min, double max);
-struct Graph* createGraph(int K, int W, double min, double max, int n, int N);
-void printGraph(FILE* out, struct Graph* graf, int N, int W, int K);
+struct Graph* createGraph(int K, int W, double min, double max);
+void printGraph(FILE* out, struct Graph* graf, int W, int K);

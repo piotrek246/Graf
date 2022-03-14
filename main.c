@@ -15,7 +15,7 @@ w przyszłości potrzebny test.c oraz osobne algorytmy bfs i dijkstry.*/
 int main(int argc, char** argv){
 
   char *nazwa_pliku = argv[1];
-  int W, K, N, n;
+  int W, K;
   double min, max;
 
   sscanf(argv[2], "%d:%d", &W, &K);
@@ -31,11 +31,8 @@ int main(int argc, char** argv){
     out = fopen(argv[1], "w");
   }
   
-  N = K*W; //liczba węzłów
-  n = ((K-1)*W + (W-1)*K); //liczba krawędzi
-
-	struct Graph *graf = createGraph(K, W, min, max, n, N);
-	printGraph(out, graf, N, W, K);
+	struct Graph *graf = createGraph(K, W, min, max);
+	printGraph(out, graf, W, K);
   
   fclose(out);
   return 0;
