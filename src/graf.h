@@ -17,4 +17,4 @@ struct Graph{
 void freeGraph(struct Graph* graf);
 double randFrom(double min, double max);
 struct Graph* createGraph(int K, int W, double min, double max);
-void printGraph(FILE* out, struct Graph* graf, int W, int K);
+void printGraph(FILE* out, struct Graph* graf);

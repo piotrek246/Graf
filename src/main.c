@@ -25,6 +25,7 @@ int main(int argc, char** argv){
   FILE *out = fopen(argv[1], "r");
   if(out != NULL){ 
     printf("Plik o podanej nazwie już istnieje, nie mogę nadpisać\n");
+    fclose(out);
     return 1;
   }
   else{
@@ -32,7 +33,7 @@ int main(int argc, char** argv){
   }
   
 	struct Graph *graf = createGraph(K, W, min, max);
-	printGraph(out, graf, W, K);
+	printGraph(out, graf);
   freeGraph(graf);
   fclose(out);
   return 0;

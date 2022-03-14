@@ -12,7 +12,7 @@ void freeGraph(struct Graph* graf){
     while (graf->head[i] != NULL)
     {
       tmp = graf->head[i];
-      graf->head[i] = graf->head[i]->next;s
+      graf->head[i] = graf->head[i]->next;
       free(tmp);
     }
   }
@@ -35,6 +35,7 @@ void addToList(struct Graph* graf, int i, int K, double random){
       node->weight = random;
       node->next = graf->head[i+K];
       graf->head[i+K] = node;
+
 }
 
 struct Graph* createGraph(int K, int W, double min, double max){
@@ -44,10 +45,10 @@ struct Graph* createGraph(int K, int W, double min, double max){
   struct Graph* graf = (struct Graph*)malloc(sizeof(struct Graph));
   graf->K = K;
   graf->W = W;
-  int N = graf->K*graf->W;
+  int N = graf->K*graf->W; //liczba węzłów
   
   //alokujemy pamięć dla tablicy N node'ów nazwanej head
-  graf->head = malloc(sizeof(struct Node)*N);
+  graf->head = malloc(N*sizeof(struct Node));
 
   //head dla wszywstkich węzłów ustawiamy na NULL
 	for (i = 0; i < N; i++) {
@@ -72,11 +73,11 @@ struct Graph* createGraph(int K, int W, double min, double max){
 }
 
 //print graf tu chyba nie ma nic ciekawego
-void printGraph(FILE* out, struct Graph* graf, int W, int K){
+void printGraph(FILE* out, struct Graph* graf){
   int i;
-  int N = K*W;
+  int N = graf->K*graf->W;
 
-  fprintf(out, "%d %d", W, K);
+  fprintf(out, "%d %d", graf->W, graf->K);
   fprintf(out,"\n");
 
   for(i = 0; i < N; i++){
