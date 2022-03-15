@@ -2,12 +2,13 @@
 #include <stdlib.h>
 #include <time.h>
 #include "graf.h"
+#include <stdbool.h>
 
 void freeGraph(struct Graph* graf){
-  int N = graf->K*graf->W;
+  int n = graf->w*graf->k;
   struct Node* tmp;
 
-  for(int i = 0; i < N; i++){
+  for(int i = 0; i < n; i++){
 
     while (graf->head[i] != NULL)
     {
@@ -20,11 +21,11 @@ void freeGraph(struct Graph* graf){
   free(graf);
 }
 
-void addToList(struct Graph* graf, int i, int K, double random){
+void addToList(struct Graph* graf, int i, int k, double random){
 
       //pierwszy węzeł np. 0 do 1
       struct Node* node = (struct Node*)malloc(sizeof(struct Node));
-      node->dest = i+K;
+      node->dest = i+k;
       node->weight = random;
       node->next = graf->head[i];
       graf->head[i] = node;
@@ -33,40 +34,38 @@ void addToList(struct Graph* graf, int i, int K, double random){
       node = (struct Node*)malloc(sizeof(struct Node));
       node->dest = i;
       node->weight = random;
-      node->next = graf->head[i+K];
-      graf->head[i+K] = node;
+      node->next = graf->head[i+k];
+      graf->head[i+k] = node;
 
 }
 
-struct Graph* createGraph(int K, int W, double min, double max){
+struct Graph* initGraph(int k, int w){
+  struct Graph* graf = (struct Graph*)malloc(sizeof(struct Graph));
+  graf->k = k;
+  graf->w = w;
+  int n = graf->k*graf->w; //liczba węzłów
+  
+  graf->head = calloc(n, sizeof(struct Node));
+  return graf;
+}
+
+struct Graph* createGraph(int k, int w, double min, double max){
   srand(time(NULL));
   int i;
 
-  struct Graph* graf = (struct Graph*)malloc(sizeof(struct Graph));
-  graf->K = K;
-  graf->W = W;
-  int N = graf->K*graf->W; //liczba węzłów
-  
-  //alokujemy pamięć dla tablicy N node'ów nazwanej head
-  graf->head = malloc(N*sizeof(struct Node));
+  struct Graph* graf = initGraph(k, w);
 
-  //head dla wszywstkich węzłów ustawiamy na NULL
-	for (i = 0; i < N; i++) {
-		graf->head[i] = NULL;
-	}
-
-  //tworzy krawędzie poziome
-  for(i = 0; i < K*W; i++){
-    if((i+1)%K != 0){
-      double random = randFrom(min, max);
-      addToList(graf, i, 1, random);
+  //tworzy połączenia poziome
+  for(i = 0; i < k*w; i++){
+      if((i+1)%k != 0){
+        double random = randFrom(min, max);
+        addToList(graf, i, 1, random);
     }
   }
-
-  //tworzy krawędzie pionowe
-  for(int i = 0; i < K*(W-1); i++){
+  //tworzy połączenia pionowe
+  for(int i = 0; i < k*(w-1); i++){
     double random = randFrom(min, max);
-    addToList(graf, i, K, random);
+    addToList(graf, i, k, random);
   }
 
   return graf;
@@ -75,17 +74,18 @@ struct Graph* createGraph(int K, int W, double min, double max){
 //print graf tu chyba nie ma nic ciekawego
 void printGraph(FILE* out, struct Graph* graf){
   int i;
-  int N = graf->K*graf->W;
+  int n = graf->k*graf->w; //liczba węzłów
 
-  fprintf(out, "%d %d", graf->W, graf->K);
+  fprintf(out, "%d %d", graf->w, graf->k);
   fprintf(out,"\n");
 
-  for(i = 0; i < N; i++){
+  for(i = 0; i < n; i++){
     struct Node* node = graf->head[i];
 
     //do momenu aż węzeł nie jest NULL patrzymy wszystki połączenia dla 0,1,2...,n
+    fprintf(out, "\t");
     while(node != NULL){
-      fprintf(out, "\t%d: %g  ", node->dest, node->weight);
+      fprintf(out, "%d :%lf\t\t", node->dest, node->weight);
       node = node->next;
     }
     fprintf(out,"\n");

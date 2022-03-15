@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
 #include "graf.h"
-
 
 /*W znacznej mierze usprawnilem kod.
 
@@ -15,16 +13,16 @@ w przyszłości potrzebny test.c oraz osobne algorytmy bfs i dijkstry.*/
 int main(int argc, char** argv){
 
   char *nazwa_pliku = argv[1];
-  int W, K;
+  int w, k;
   double min, max;
 
-  sscanf(argv[2], "%d:%d", &W, &K);
+  sscanf(argv[2], "%d:%d", &w, &k);
   sscanf(argv[3], "%lf-%lf", &min, &max);
 
-  //sprawdza czy podany plik istnieje
+  //sprawdza czy może pisać
   FILE *out = fopen(argv[1], "r");
   if(out != NULL){ 
-    printf("Plik o podanej nazwie już istnieje, nie mogę nadpisać\n");
+    printf("nie mogę nadpisać\n");
     fclose(out);
     return 1;
   }
@@ -32,7 +30,7 @@ int main(int argc, char** argv){
     out = fopen(argv[1], "w");
   }
   
-	struct Graph *graf = createGraph(K, W, min, max);
+	struct Graph *graf = createGraph(k, w, min, max);
 	printGraph(out, graf);
   freeGraph(graf);
   fclose(out);
