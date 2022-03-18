@@ -17,7 +17,7 @@ Program w języku C, umożliwiający tworzenie, zapisywanie i odczytywanie grafu
   - Algorytm Dijkstry: 
     <br />./graf nazwa pliku Dijkstra węzeł-węzeł ...
 # Przykłady wywołania
-- Generacja grafu <br />./graf graf01.txt 20:25 0.00-19.99 <br />Program stworzy plik graf01.txt z wygenerowanym grafem(20 kolumn, 25 wierszy, generowane losowo wagi krawędzi z przedziału 0.00-19.99).
+- Generacja grafu <br />./graf graf01.txt 20:25 0.00-19.99 <br />Program stworzy plik graf01.txt z wygenerowanym grafem (20 kolumn, 25 wierszy, generowane losowo wagi krawędzi z przedziału 0.00-19.99).
 - Odczytywanie grafu
   - Algorytm BFS: <br />./graf graf01.txt BFS <br />Program odczyta plik graf01.txt i określi jego spójność.
   - Algorytm Dijkstry: <br />./graf graf01.txt Dijkstra 0-19 0-12 <br />Program odczyta plik graf01.txt i wyznaczy najkrótsze ścieżki od węzła 0 do 19 oraz od 	węzła 0 do 12. 
