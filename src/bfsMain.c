@@ -1,11 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "graf.h"
+#include "bfs.h"
+
+#define MAX_BUF 1024
 
 int main(int argc, char** argv){
   int w, k;
   char *nazwa_pliku = argv[1];
   FILE *in = fopen(argv[1], "r");
+  int start = atoi(argv[2]);
 
   FILE *out = stdout;
 
@@ -16,7 +20,13 @@ int main(int argc, char** argv){
   }
   else{
     struct Graph* graf = readGraph(in);
-    printGraph(out, graf);
+
+    int result = bfs(graf, start);
+    if(result == 0)
+      printf("\nGraf jest spójny\n");
+    else
+      printf("\nGraf nie jest spójny\n");
+
     freeGraph(graf);
     fclose(in);
     fclose(out);

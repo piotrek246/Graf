@@ -99,3 +99,29 @@ double randFrom(double min, double max)
     double div = RAND_MAX / range;
     return min + (rand() / div);
 }
+
+struct Graph* readGraph(FILE *in){
+  int dest, w, k;
+  double weight;
+  char buf[MAX_BUF];
+  int count = -1;
+  int offset;
+
+  fscanf(in, "%d %d", &w, &k);
+  struct Graph *graf = initGraph(k, w);
+
+  while (fgets(buf, MAX_BUF, in) != NULL){
+    char *data = buf;
+    while (sscanf(data, "%d :%lf%n", &dest, &weight, &offset) == 2)
+    {
+      struct Node *node = (struct Node *)malloc(sizeof(struct Node));
+      node->dest = dest;
+      node->weight = weight;
+      node->next = graf->head[count];
+      graf->head[count] = node;
+      data += offset;
+    }
+    count++;
+  }
+  return graf;
+}

@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define MAX_BUF 1024
+
 struct Node{
   int dest;
   double weight;
@@ -18,3 +20,4 @@ struct Graph* createGraph(int K, int W, double min, double max);
 void printGraph(FILE* out, struct Graph* graf);
 void freeGraph(struct Graph* graf);
 double randFrom(double min, double max);
+struct Graph* readGraph(FILE *in);
