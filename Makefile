@@ -10,8 +10,7 @@ bfs: src/bfsmain.o src/graph.o src/queue.o src/bfs.o
 	gcc src/bfsmain.c src/graph.c src/queue.c src/bfs.c -o bfs
 
 clean:
-	rm read graph bfs
+	rm read graph bfs src/*.o
 
 cleantxt:
 	rm *.txt
-	rm src/*.o

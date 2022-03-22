@@ -43,38 +43,5 @@ int bfs(Graph_t* graf, int s){
     if(color[i] != BLACK)
       return 1;
   }
-  for(int i = 0; i < n; i++){
-    printf("%d dystans od węzła %d : %d\n", i, s, distance[i]);
-  }
-  /*for(int i = 0; i < n; i++)
-    visited[i] = false;
-  
-
-  Queue_t *q = malloc(sizeof(*q)); 
-  initQueue(q);
-  enqueue(q, start);
-
-  while(!isempty(q)){
-    struct Node* node = graf->head[q->front->data];
-
-    while(node != NULL){
-      if(ifInQueue(q, node->dest))
-        node = node->next;
-
-      if(visited[node->dest] == true)
-        node = node->next;
-
-      else{
-        enqueue(q, node->dest);
-        node = node->next;
-      }
-    }
-    visited[dequeue(q)] = true;
-  }
-
-  for(int i = 0; i < n; i++){
-    if(visited[i] == false)
-      return 1;
-  }*/
   return 0;
 }

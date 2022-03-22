@@ -47,7 +47,7 @@ struct Graph* initGraph(int k, int w){
 }
 
 Graph_t* createGraph(int k, int w, double min, double max){
-  srand(time(NULL));
+  //srand(time(NULL));
   int i;
 
   Graph_t* graf = initGraph(k, w);

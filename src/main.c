@@ -1,8 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include "graph.h"
 
 int main(int argc, char** argv){
+  srand(time(NULL));
 
   char *nazwa_pliku = argv[1];
   int w, k;
