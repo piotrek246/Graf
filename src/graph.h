@@ -14,10 +14,11 @@ typedef struct Graph{
   struct Node** adjlist;
 } Graph_t;
 
-void freeGraph(struct Graph* graf);
-void addToList(struct Graph* graf, int i, int k, double random);
-Graph_t* initGraph(int k, int w);
-Graph_t* createGraph(int K, int W, double min, double max);
-void printGraph(FILE* out, struct Graph* graf);
-double randFrom(double min, double max);
-Graph_t* readGraph(FILE *in);
+double randfrom(double min, double max);
+void freegraph(struct Graph* graf);
+void addtolist(struct Graph* graf, int i, int k, double random);
+void printgraph(FILE* out, struct Graph* graf);
+Graph_t* initgraph(int k, int w);
+Graph_t* creategraph(int K, int W, double min, double max);
+Graph_t* readgraph(FILE *in);
+

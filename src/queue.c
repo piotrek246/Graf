@@ -32,7 +32,6 @@ int dequeue(Queue_t *q){
     q->rear = NULL;
     return n;
   }
-
   q->front = q->front->next;
   free(tmp);
   return n;

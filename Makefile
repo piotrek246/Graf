@@ -1,6 +1,6 @@
 all: graph read bfs
 
-graph: src/main.o src/graph.o
+graph: src/main.o src/graph.o 
 	gcc src/main.c src/graph.c -o graph
 
 read:	src/readmain.o src/graph.o

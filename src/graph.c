@@ -3,7 +3,7 @@
 #include <time.h>
 #include "graph.h"
 
-void freeGraph(Graph_t* graf){
+void freegraph(Graph_t* graf){
   int n = graf->w*graf->k;
   struct Node* tmp;
 
@@ -20,7 +20,7 @@ void freeGraph(Graph_t* graf){
   free(graf);
 }
 
-void addToList(Graph_t* graf, int i, int k, double weight){
+void addtolist(Graph_t* graf, int i, int k, double weight){
 
       struct Node* node = malloc(sizeof(*node));
       node->dest = i+k;
@@ -36,7 +36,7 @@ void addToList(Graph_t* graf, int i, int k, double weight){
 
 }
 
-struct Graph* initGraph(int k, int w){
+struct Graph* initgraph(int k, int w){
   Graph_t* graf = malloc(sizeof(*graf));
   graf->k = k;
   graf->w = w;
@@ -46,29 +46,28 @@ struct Graph* initGraph(int k, int w){
   return graf;
 }
 
-Graph_t* createGraph(int k, int w, double min, double max){
-  //srand(time(NULL));
+Graph_t* creategraph(int k, int w, double min, double max){
   int i;
 
-  Graph_t* graf = initGraph(k, w);
+  Graph_t* graf = initgraph(k, w);
 
   //tworzy połączenia poziome
   for(i = 0; i < k*w; i++){
       if((i+1)%k != 0){
-        double weight = randFrom(min, max);
-        addToList(graf, i, 1, weight);
+        double weight = randfrom(min, max);
+        addtolist(graf, i, 1, weight);
     }
   }
   //tworzy połączenia pionowe
   for(int i = 0; i < k*(w-1); i++){
-    double weight = randFrom(min, max);
-    addToList(graf, i, k, weight);
+    double weight = randfrom(min, max);
+    addtolist(graf, i, k, weight);
   }
 
   return graf;
 }
 
-void printGraph(FILE* out, Graph_t* graf){
+void printgraph(FILE* out, Graph_t* graf){
   int i;
   int n = graf->k*graf->w; //liczba węzłów
 
@@ -87,15 +86,7 @@ void printGraph(FILE* out, Graph_t* graf){
   }
 }
 
-//funkcja pomocnicza do generowania losowej wartosci wagi od min do max
-double randFrom(double min, double max) 
-{
-    double range = (max - min); 
-    double div = RAND_MAX / range;
-    return min + (rand() / div);
-}
-
-Graph_t* readGraph(FILE *in){
+Graph_t* readgraph(FILE *in){
   int dest, w, k;
   double weight;
   char buf[MAX_BUF];
@@ -103,7 +94,7 @@ Graph_t* readGraph(FILE *in){
   int offset;
 
   fscanf(in, "%d %d", &w, &k);
-  Graph_t* graf = initGraph(k, w);
+  Graph_t* graf = initgraph(k, w);
 
   while (fgets(buf, MAX_BUF, in) != NULL){
     char *data = buf;
@@ -119,4 +110,10 @@ Graph_t* readGraph(FILE *in){
     count++;
   }
   return graf;
+}
+
+double randfrom(double min, double max){
+    double range = (max - min); 
+    double div = RAND_MAX / range;
+    return min + (rand() / div);
 }

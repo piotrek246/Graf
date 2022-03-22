@@ -3,23 +3,26 @@
 #include "graph.h"
 
 int main(int argc, char** argv){
+
+  if(argc < 2 || argc > 2){
+    printf("Niepoprawna ilość argumentów\n");
+    return EXIT_FAILURE;
+  }
   int w, k;
   char *nazwa_pliku = argv[1];
   FILE *in = fopen(argv[1], "r");
 
-  FILE *out = stdout;
-
   if(in == NULL){ 
     printf("nie mogę czytać\n");
     fclose(in);
-    return 1;
+    return EXIT_FAILURE;
   }
   else{
-    struct Graph* graf = readGraph(in);
-    printGraph(out, graf);
-    freeGraph(graf);
+    struct Graph* graf = readgraph(in);
+    printgraph(stdout, graf);
+    freegraph(graf);
     fclose(in);
-    fclose(out);
+    fclose(stdout);
   }
   return 0;
 }
