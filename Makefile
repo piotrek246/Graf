@@ -1,16 +1,17 @@
-all: graf read bfs
+all: graph read bfs
 
-graf: 
-	gcc src/main.c src/graf.c -o graf
+graph: src/main.o src/graph.o
+	gcc src/main.c src/graph.c -o graph
 
-read:
-	gcc src/readMain.c src/graf.c -o read
+read:	src/readmain.o src/graph.o
+	gcc src/readmain.c src/graph.c -o read
 
-bfs:
-	gcc src/bfsMain.c src/graf.c src/queue.c src/bfs.c -o bfs
+bfs: src/bfsmain.o src/graph.o src/queue.o src/bfs.o
+	gcc src/bfsmain.c src/graph.c src/queue.c src/bfs.c -o bfs
 
 clean:
-	rm read graf bfs
+	rm read graph bfs
 
 cleantxt:
 	rm *.txt
+	rm src/*.o

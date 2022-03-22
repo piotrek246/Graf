@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "graf.h"
+#include "graph.h"
 
 int main(int argc, char** argv){
   int w, k;

@@ -1,14 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "graf.h"
-
-/*W znacznej mierze usprawnilem kod.
-
-Z najważniejszych to pozbyłem się tworu Edge, który okazał się
-zwyczajnie zbedny.
-
-Podzielony na kilka plików a mianowicie graf.c i main.c,
-w przyszłości potrzebny test.c oraz osobne algorytmy bfs i dijkstry.*/
+#include "graph.h"
 
 int main(int argc, char** argv){
 

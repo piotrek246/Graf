@@ -3,7 +3,6 @@
 #include "queue.h"
 
 void initQueue(Queue_t *q){
-    q->count = 0;
     q->front = NULL;
     q->rear = NULL;
 }
@@ -13,7 +12,7 @@ int isempty(Queue_t *q){
 }
 
 void enqueue(Queue_t *q, int value){
-  qNode_t *tmp = malloc(sizeof(qNode_t));
+  Qnode_t* tmp = malloc(sizeof(*tmp));
   tmp->data = value;
 
   if(!isempty(q)){
@@ -22,27 +21,24 @@ void enqueue(Queue_t *q, int value){
   }
   else
     q->front = q->rear = tmp;
-  q->count++;
 }
 int dequeue(Queue_t *q){
-  qNode_t *tmp;
+  Qnode_t* tmp = q->front;
   int n = q->front->data;
   tmp = q->front;
   
-  if(tmp->next == NULL){
+  if(tmp == q->rear){
     q->front = NULL;
     q->rear = NULL;
-    q->count--;
     return n;
   }
 
   q->front = q->front->next;
-  q->count--;
   free(tmp);
   return n;
 }
 void printQueue(Queue_t *q){
-  qNode_t *tmp = q->front;
+  Qnode_t *tmp = q->front;
   while(tmp != NULL){
     printf("[%d] ", tmp->data);
     tmp = tmp->next;
@@ -51,7 +47,7 @@ void printQueue(Queue_t *q){
 }
 
 int ifInQueue(Queue_t *q, int value){
-  qNode_t *tmp = q->front;
+  Qnode_t* tmp = q->front;
   while(tmp != NULL){
     if(tmp->data == value)
       return 1;

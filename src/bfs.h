@@ -1,2 +1,1 @@
-int bfs(struct Graph* graf, int start);
-
+int bfs(struct Graph* graf, int s);

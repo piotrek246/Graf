@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "graf.h"
+#include "graph.h"
 #include "bfs.h"
 
 #define MAX_BUF 1024
@@ -28,7 +28,6 @@ int main(int argc, char** argv){
     return 1;
   }
   else{
-    struct Graph* graf = readGraph(in);
 
     int result = bfs(graf, start);
     if(result == 0)
