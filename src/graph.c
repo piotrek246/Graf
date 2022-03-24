@@ -1,3 +1,6 @@
+#ifndef GRAP_H_
+#define GRAP_H_
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -117,3 +120,4 @@ double randfrom(double min, double max){
     double div = RAND_MAX / range;
     return min + (rand() / div);
 }
+#endif 
