@@ -2,9 +2,9 @@
 #define PQ_H
 
 typedef struct hn{
+  double data;
   int v;
   int p;
-  double data;
 } *hn;
 
 typedef struct pq{
@@ -12,10 +12,15 @@ typedef struct pq{
   int size;
 } *pq;
 
+hn createheapnode(double w, int v, int p);
 int isempty(pq q);
 pq initpq(int n);
-pq push(pq q, hn newnode);
-hn pop(pq q);
+void push(pq q, hn newnode);
+void pop(pq q);
+int extract(pq q);
+int heapsearch(pq q, int indx);
+void decrease_key(pq q, int indx, double weight);
+
 /*
 int ispqempty(pq q);
 pq createpq(int n);

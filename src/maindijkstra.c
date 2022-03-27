@@ -6,7 +6,7 @@
 #define MAX_BUF 1024
 
 int main(int argc, char** argv){
-  if(argc < 3 || argc > 3) {
+  if(argc < 4 || argc > 4) {
     printf("Niepoprawna ilość argumentów\n");
     return EXIT_FAILURE;
   }
@@ -14,9 +14,14 @@ int main(int argc, char** argv){
   char *nazwa_pliku = argv[1];
   FILE *in = fopen(argv[1], "r");
   int start = atoi(argv[2]);
-  
+  int end = atoi(argv[3]);
+
   struct Graph* graf = readgraph(in);
   if(start >= graf->k*graf->w){
+    printf("Podano numer węzła który nie należy do grafu\n");
+    return EXIT_FAILURE;
+  }
+  if(end >= graf->k*graf->w){
     printf("Podano numer węzła który nie należy do grafu\n");
     return EXIT_FAILURE;
   }
@@ -26,7 +31,7 @@ int main(int argc, char** argv){
     return 1;
   }
   else{
-    dijkstra(graf, start);
+    dijkstra(graf, start, end);
     freegraph(graf);
     fclose(in);
   }
