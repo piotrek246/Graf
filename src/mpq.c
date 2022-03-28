@@ -29,7 +29,7 @@ void swap(pq q, int i, int p){
 }
 
 int ifinpq(pq q, int indx){
-  for(int i = q->size; i >= 0; i--)
+  for(int i = 0; i <= q->size; i++)
     if(q->arr[i]->v == indx)
       return 1;
   return 0;
@@ -82,7 +82,7 @@ int pop(pq q){
   else
     s = s+1;
 
-  while(s < q->size){
+  while(s <= q->size){
     if(q->arr[s]->data < q->arr[s+1]->data)
       s = s;
     else
