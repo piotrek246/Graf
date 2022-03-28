@@ -24,8 +24,8 @@ void dijkstra(Graph_t* graf, int s, int e){
   int n = graf->k*graf->w;
   int p[n];
   double d[n];
-  int visited[n];
   int u;
+  int visited[n];
   Node_t* v;
   for(int i = 0; i < n; i++){
     d[i] = INF;
@@ -33,7 +33,6 @@ void dijkstra(Graph_t* graf, int s, int e){
     visited[i] = 0;
   }
   d[s] = 0;
-  p[s] = -1;
   pq q = initpq(n);
   
   for(int i = 0; i < n; i++){
@@ -44,21 +43,19 @@ void dijkstra(Graph_t* graf, int s, int e){
     push(q, k);
   }
   while(!isempty(q)){
-    u = extract(q); pop(q);
+    u = pop(q);
     v = graf->adjlist[u];
     while(v != NULL){
       if(d[v->dest] > d[u] + v->weight){
         d[v->dest] = d[u] + v->weight;
         p[v->dest] = u;
-        decrease_key(q, v->dest, v->weight);
+        decrease_key(q, v->dest, v->weight, d[u]);
       }
       v = v->next;
     }
   }
-  for(int i=0; i< n; i++)
-    printf("%g, ", d[i]);
-  printPath(p, e);
   printf("\n\n%g", d[e]);
+  printPath(p, e);
   
   /*
   hn k = malloc(sizeof(*k));
@@ -80,14 +77,13 @@ void dijkstra(Graph_t* graf, int s, int e){
         k->v = v->dest;
         k->p = u;
         push(q, k);
-        v = v->next;
       }
       v = v->next;
     }
     visited[u] = 1;
     pop(q);
   }
-  */
+*/
 }
 
 

@@ -17,7 +17,7 @@ int isempty(pq q){
 pq initpq(int n){
   pq q = malloc(sizeof(*q));
   q->size = -1;
-  q->arr = malloc(sizeof(*(q->arr))*n*n);
+  q->arr = malloc(sizeof(*(q->arr))*n);
   return q;
 }
 
@@ -40,19 +40,22 @@ void push(pq q, hn newnode){
 }
 
 int heapsearch(pq q, int indx){
-  for(int i = 0; i < q->size; i++){
+  for(int i = 0; i <= q->size; i++){
     if(q->arr[i]->v == indx){
       return i;
     }
   }
   return -1;
 }
-void decrease_key(pq q, int indx, double weight){
-  int i, tmp;
-  tmp = heapsearch(q, indx);
-  i = (tmp-1)/2;
-  while(i > 0 && weight < q->arr[(i-1)/2]->data){
-    swap(q, tmp, (i-1)/2);
+void decrease_key(pq q, int indx, double weight, double pw){
+  int i = heapsearch(q, indx);
+  if(i == -1)
+    return;
+  if(weight + pw < q->arr[i]->data)
+    q->arr[i]->data = pw + weight;
+
+  while(i > 0 && q->arr[i]->data < q->arr[(i-1)/2]->data){
+    swap(q, i, (i-1)/2);
     i = (i-1)/2;
   }
 }
@@ -61,12 +64,30 @@ int extract(pq q){
   return q->arr[0]->v;
 }
 
+/*
 void pop(pq q){
+  int i = 0;
+  int s;
+  q->arr[0] = q->arr[q->size];
+  q->size--;
+  
+  while(2*i+1 <= q->size){
+    if(q->arr[2*i+1]->data < q->arr[2*i+2]->data)
+      if(q->arr[i]->data > q->arr[2*i+1]->data)
+        swap(q, 2*i+1, i);
+    else
+      if(q->arr[i]->data > q->arr[2*i+2]->data)
+        swap(q, 2*i+2, i);
+
+    i = 2*i+1;
+  }
+}*/
+int pop(pq q){
   int i = 0;
   int l = (2*i)+1;
   int r = (2*i)+2;
   int s;
-  //int result = q->arr[0];
+  int result = q->arr[0]->v;
   q->arr[0] = q->arr[q->size];
   q->size--;
   
@@ -75,10 +96,14 @@ void pop(pq q){
   else
     s = r;
 
-  while(s <= q->size && q->arr[i]->data > q->arr[s]->data){
-    swap(q, s, i);
+  while(s < q->size && q->arr[i]->data > q->arr[s]->data){
+    if(q->arr[2*i+1]->data < q->arr[2*i+2]->data)
+      s = 2*i+1;
+    else
+      s = 2*i+2;
+    swap(q, i, s);
     i = s;
   }
-  //return result;
+  return result;
 }
 

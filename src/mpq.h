@@ -16,10 +16,11 @@ hn createheapnode(double w, int v, int p);
 int isempty(pq q);
 pq initpq(int n);
 void push(pq q, hn newnode);
-void pop(pq q);
+int pop(pq q);
 int extract(pq q);
 int heapsearch(pq q, int indx);
-void decrease_key(pq q, int indx, double weight);
+void decrease_key(pq q, int indx, double weight, double pw);
+//void decrease_key(pq q, int indx, double weight);
 
 /*
 int ispqempty(pq q);
