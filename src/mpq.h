@@ -20,6 +20,7 @@ int pop(pq q);
 int extract(pq q);
 int heapsearch(pq q, int indx);
 void decrease_key(pq q, int indx, double weight, double pw);
+int ifinpq(pq q, int indx);
 //void decrease_key(pq q, int indx, double weight);
 
 /*

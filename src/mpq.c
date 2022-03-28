@@ -28,6 +28,13 @@ void swap(pq q, int i, int p){
   //free(tmp);
 }
 
+int ifinpq(pq q, int indx){
+  for(int i = q->size; i >= 0; i--)
+    if(q->arr[i]->v == indx)
+      return 1;
+  return 0;
+}
+
 void push(pq q, hn newnode){
   q->size++;
   int i = q->size;
@@ -71,9 +78,9 @@ int pop(pq q){
   q->size--;
   
   if(q->arr[s]->data < q->arr[s+1]->data)
-      s = s;
-    else
-      s = s+1;
+    s = s;
+  else
+    s = s+1;
 
   while(s < q->size){
     if(q->arr[s]->data < q->arr[s+1]->data)
