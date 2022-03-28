@@ -16,7 +16,7 @@ typedef struct Graph{
 
 double randfrom(double min, double max);
 void freegraph(struct Graph* graf);
-void addtolist(struct Graph* graf, int i, int k, double random);
+void addtolist(struct Graph* graf, int i, int k, double random, double min, double max);
 void printgraph(FILE* out, struct Graph* graf);
 Graph_t* initgraph(int k, int w);
 Graph_t* creategraph(int K, int W, double min, double max);

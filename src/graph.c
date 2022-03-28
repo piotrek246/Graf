@@ -23,17 +23,17 @@ void freegraph(Graph_t* graf){
   free(graf);
 }
 
-void addtolist(Graph_t* graf, int i, int k, double weight){
+void addtolist(Graph_t* graf, int i, int k, double weight, double min, double max){
 
       struct Node* node = malloc(sizeof(*node));
       node->dest = i+k;
-      node->weight = weight;
+      node->weight = weight;//randfrom(min, max);
       node->next = graf->adjlist[i];
       graf->adjlist[i] = node;
 
       node = malloc(sizeof(*node));
       node->dest = i;
-      node->weight = weight;
+      node->weight = weight;//randfrom(min, max);
       node->next = graf->adjlist[i+k];
       graf->adjlist[i+k] = node;
 
@@ -58,13 +58,13 @@ Graph_t* creategraph(int k, int w, double min, double max){
   for(i = 0; i < k*w; i++){
       if((i+1)%k != 0){
         double weight = randfrom(min, max);
-        addtolist(graf, i, 1, weight);
+        addtolist(graf, i, 1, weight, min, max);
     }
   }
   //tworzy połączenia pionowe
   for(int i = 0; i < k*(w-1); i++){
     double weight = randfrom(min, max);
-    addtolist(graf, i, k, weight);
+    addtolist(graf, i, k, weight, min, max);
   }
 
   return graf;

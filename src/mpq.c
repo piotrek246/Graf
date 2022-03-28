@@ -60,28 +60,6 @@ void decrease_key(pq q, int indx, double weight, double pw){
   }
 }
 
-int extract(pq q){
-  return q->arr[0]->v;
-}
-
-/*
-void pop(pq q){
-  int i = 0;
-  int s;
-  q->arr[0] = q->arr[q->size];
-  q->size--;
-  
-  while(2*i+1 <= q->size){
-    if(q->arr[2*i+1]->data < q->arr[2*i+2]->data)
-      if(q->arr[i]->data > q->arr[2*i+1]->data)
-        swap(q, 2*i+1, i);
-    else
-      if(q->arr[i]->data > q->arr[2*i+2]->data)
-        swap(q, 2*i+2, i);
-
-    i = 2*i+1;
-  }
-}*/
 int pop(pq q){ // tu bład jakiś
   int i = 0;
   int l = (2*i)+1;
