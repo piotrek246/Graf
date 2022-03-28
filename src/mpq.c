@@ -82,7 +82,7 @@ void pop(pq q){
     i = 2*i+1;
   }
 }*/
-int pop(pq q){
+int pop(pq q){ // tu bład jakiś
   int i = 0;
   int l = (2*i)+1;
   int r = (2*i)+2;
@@ -96,13 +96,15 @@ int pop(pq q){
   else
     s = r;
 
-  while(s < q->size && q->arr[i]->data > q->arr[s]->data){
-    if(q->arr[2*i+1]->data < q->arr[2*i+2]->data)
-      s = 2*i+1;
+  while(s < q->size){
+    if(q->arr[s]->data < q->arr[s+1]->data)
+      s = s;
     else
-      s = 2*i+2;
-    swap(q, i, s);
+      s = s+1;
+    if(q->arr[i]->data > q->arr[s]->data)
+      swap(q, s, i);
     i = s;
+    s = 2*i+1;
   }
   return result;
 }

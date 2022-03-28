@@ -55,35 +55,8 @@ void dijkstra(Graph_t* graf, int s, int e){
     }
   }
   printf("\n\n%g", d[e]);
+  printf("\n");
   printPath(p, e);
-  
-  /*
-  hn k = malloc(sizeof(*k));
-  k->data = d[s];
-  k->v = s;
-  k->p = p[s];
-  push(q, k);
-
-  while(!isempty(q)){
-    u = extract(q);
-    Node_t* v = graf->adjlist[u];
-    while(v != NULL){
-      if(d[v->dest] > d[u] + v->weight ){
-        d[v->dest] = d[u] + v->weight;
-        p[v->dest] = u;
-      }
-      if(visited[v->dest] == 0){
-        k->data = v->weight;
-        k->v = v->dest;
-        k->p = u;
-        push(q, k);
-      }
-      v = v->next;
-    }
-    visited[u] = 1;
-    pop(q);
-  }
-*/
 }
 
 
