@@ -5,12 +5,6 @@
 
 #define INF 10000000
 
-void relax(pq q, Node_t* v, int u, double d[], int p[]){
-  if(q->arr[heapsearch(q, v->dest)]->data > q->arr[heapsearch(q, u)]->data + v->weight){
-    q->arr[heapsearch(q, v->dest)]->data = q->arr[heapsearch(q, u)]->data + v->weight;
-    q->arr[heapsearch(q, v->dest)]->p = u;
-  } 
-}
 void printPath(int p[], int e){
   if (p[e] == -1){
     printf("%d ", e);
@@ -34,7 +28,7 @@ void dijkstra(Graph_t* graf, int s, int e){
   }
   d[s] = 0;
   pq q = initpq(n);
-  
+  /*
   for(int i = 0; i < n; i++){
     hn k = malloc(sizeof(*k));
     k->data = d[i];
@@ -57,6 +51,38 @@ void dijkstra(Graph_t* graf, int s, int e){
   printf("\n\n%g", d[e]);
   printf("\n");
   printPath(p, e);
+  */
+  
+  
+  hn k = malloc(sizeof(*k));
+  k->data = d[s];
+  k->v = s;
+  k->p = p[s];
+  push(q, k);
+
+  while(!isempty(q)){
+    u = extract(q);
+    v = graf->adjlist[u];
+    while(v != NULL){
+      if(visited[v->dest] == 0){
+        k->data = v->weight + d[u];
+        k->v = v->dest;
+        k->p = u;
+        push(q, k);
+      }
+      if(d[v->dest] > d[u] + v->weight){
+        d[v->dest] = d[u] + v->weight;
+        p[v->dest] = u;
+        //decrease_key(q, v->dest, v->weight, d[u]);
+      }
+      v = v->next;
+    }
+    visited[u] = 1;
+    pop(q);
+    printf("\n[%d]\n", q->size);
+  }
+  printf("\n\n%g", d[e]);
+  
 }
 
 

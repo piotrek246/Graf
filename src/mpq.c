@@ -40,7 +40,7 @@ void push(pq q, hn newnode){
 }
 
 int heapsearch(pq q, int indx){
-  for(int i = 0; i <= q->size; i++){
+  for(int i = q->size; i >= 0; i--){
     if(q->arr[i]->v == indx){
       return i;
     }
@@ -59,20 +59,21 @@ void decrease_key(pq q, int indx, double weight, double pw){
     i = (i-1)/2;
   }
 }
+int extract(pq q){
+  return q->arr[0]->v;
+}
 
-int pop(pq q){ // tu bład jakiś
+int pop(pq q){
   int i = 0;
-  int l = (2*i)+1;
-  int r = (2*i)+2;
-  int s;
+  int s = 2*i+1;
   int result = q->arr[0]->v;
   q->arr[0] = q->arr[q->size];
   q->size--;
   
-  if(q->arr[l]->data < q->arr[r]->data)
-    s = l;
-  else
-    s = r;
+  if(q->arr[s]->data < q->arr[s+1]->data)
+      s = s;
+    else
+      s = s+1;
 
   while(s < q->size){
     if(q->arr[s]->data < q->arr[s+1]->data)
