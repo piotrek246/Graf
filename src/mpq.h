@@ -2,14 +2,14 @@
 #define PQ_H
 
 typedef struct hn{
-  double data;
-  int v;
-  int p;
+  long double data;
+  long int v;
+  long int p;
 } *hn;
 
 typedef struct pq{
   hn *arr;
-  int size;
+  long int size;
 } *pq;
 
 hn createheapnode(double w, int v, int p);

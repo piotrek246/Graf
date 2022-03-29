@@ -28,6 +28,7 @@ void dijkstra(Graph_t* graf, int s, int e){
   }
   d[s] = 0;
   pq q = initpq(n);
+  
   /*
   for(int i = 0; i < n; i++){
     hn k = malloc(sizeof(*k));
@@ -52,7 +53,6 @@ void dijkstra(Graph_t* graf, int s, int e){
   printf("\n");
   printPath(p, e);
   */
-  
   
   hn k = malloc(sizeof(*k));
   k->data = 0;
@@ -81,9 +81,9 @@ void dijkstra(Graph_t* graf, int s, int e){
     visited[u] = 1;
     pop(q);
   }
-  printf("\n\n%g", d[e]);
+  printf("\n%g\n", d[e]);
+  printPath(p, e);
 
-  
 }
 
 

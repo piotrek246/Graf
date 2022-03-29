@@ -1,7 +1,7 @@
 all: graph read bfs dijkstra
 
 graph: src/main.o src/graph.o 
-	gcc src/main.c src/graph.c -o graph
+	gcc src/main.c src/graph.c -o graf
 
 read:	src/readmain.o src/graph.o
 	gcc src/readmain.c src/graph.c -o read
@@ -12,7 +12,7 @@ bfs: src/bfsmain.o src/graph.o src/queue.o src/bfs.o
 dijkstra: src/maindijkstra.o src/graph.o src/mpq.o src/dijkstra.o
 	gcc src/maindijkstra.c src/graph.c src/mpq.c src/dijkstra.c -o dijkstra
 clean:
-	rm read graph bfs src/*.o dijkstra
+	rm read graf bfs src/*.o dijkstra
 
 cleantxt:
 	rm *.txt
