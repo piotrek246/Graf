@@ -12,11 +12,11 @@ Program w języku C, umożliwiający tworzenie, zapisywanie i odczytywanie grafu
 - Argumenty wywołania programu przy tworzeniu grafu: 
   - ./graf nazwa_pliku kolumny:wiersze (waga) od-do 
 - Argumenty wywołania programu przy odczytywaniu grafu: 
-  -./read nazwa_pliku
+  - ./read nazwa_pliku
 - Argumenty wywołania programu przy użyciu BFS:
-  -./bfs <nazwa_pliku> <węzeł_startowy>
+  - ./bfs <nazwa_pliku> <węzeł_startowy>
 - Argumenty wywołania programu przy użyciu algorytmu Dijkstry:
-  -./dijkstra nazwa_pliku <węzeł_startowy> <węzeł_końcowy>
+  - ./dijkstra nazwa_pliku <węzeł_startowy> <węzeł_końcowy>
 # Przykłady wywołania
 - Generacja grafu <br />./graf graf01.txt 20:25 0.00-19.99 <br />Program stworzy plik graf01.txt z wygenerowanym grafem (20 kolumn, 25 wierszy, generowane losowo wagi krawędzi z przedziału 0.00-19.99).
 - Odczytywanie grafu
