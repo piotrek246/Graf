@@ -1,5 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h>
+#ifndef GRAPH_H
+#define GRAPH_H
 
 #define MAX_BUF 1024
 
@@ -21,4 +21,4 @@ void printgraph(FILE* out, struct Graph* graf);
 Graph_t* initgraph(int k, int w);
 Graph_t* creategraph(int K, int W, double min, double max);
 Graph_t* readgraph(FILE *in);
-
+#endif

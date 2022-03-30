@@ -63,15 +63,19 @@ void dijkstra(Graph_t* graf, int s, int e){
   while(!isempty(q)){
     u = extract(q);
     v = graf->adjlist[u];
+    if(v == NULL){
+      printf("Nie ma połączenia z %d do %d\n", s, e);
+      return;
+    }
     while(v != NULL){
-      if(visited[v->dest] == 0 && ifinpq(q, v->dest)==0){
+      if(visited[v->dest] == 0 && ifinpq(q, v->dest) == 0){
         hn k = malloc(sizeof(*k));
         k->data = v->weight + d[u];
         k->v = v->dest;
         k->p = u;
         push(q, k);
       }
-      if(d[v->dest] > d[u] + v->weight){//&& (visited[v->dest] == 0)){
+      if(d[v->dest] > d[u] + v->weight){
         d[v->dest] = d[u] + v->weight;
         p[v->dest] = u;
         decrease_key(q, v->dest, v->weight, d[u]);
@@ -81,9 +85,18 @@ void dijkstra(Graph_t* graf, int s, int e){
     visited[u] = 1;
     pop(q);
   }
+  if(visited[e] != 1){
+    printf("Nie ma połączenia z %d do %d\n", s, e);
+    return;
+  }
+  
   printf("\n%g\n", d[e]);
   printPath(p, e);
+  printf("\n");
 
+  free(k);
+  free(q->arr);
+  free(q);
 }
 
 

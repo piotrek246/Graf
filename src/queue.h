@@ -1,3 +1,5 @@
+#ifndef QUEUE_H
+#define QUEUE_H
 
 typedef struct Qnode{
     int data;
@@ -15,4 +17,4 @@ void enqueue(Queue_t *q, int value);
 int dequeue(Queue_t *q);
 void printQueue(Queue_t *q);
 int ifInQueue(Queue_t *q, int value);
-
+#endif

@@ -43,5 +43,6 @@ int bfs(Graph_t* graf, int s){
     if(color[i] != BLACK)
       return 1;
   }
+  free(q);
   return 0;
 }

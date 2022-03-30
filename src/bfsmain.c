@@ -18,10 +18,13 @@ int main(int argc, char** argv){
   struct Graph* graf = readgraph(in);
   if(start >= graf->k*graf->w){
     printf("Podano numer węzła który nie należy do grafu\n");
+    freegraph(graf);
+    fclose(in);
     return EXIT_FAILURE;
   }
   if(in == NULL){ 
     printf("nie mogę czytać\n");
+    freegraph(graf);
     fclose(in);
     return 1;
   }
@@ -31,6 +34,7 @@ int main(int argc, char** argv){
       printf("\nGraf jest spójny\n");
     else
       printf("\nGraf nie jest spójny\n");
+    
     freegraph(graf);
     fclose(in);
   }

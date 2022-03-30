@@ -22,18 +22,5 @@ void fixdown(pq q, int i);
 void insertpq(pq q, hn k);
 hn pqget(pq q);
 void heapify(pq q);
-/*
-void swap(int *a, int *b);
-int leftchild(int i);
-int rightchild(int i);
-int parent(int i);
-void shiftup(int h[], int i);
-void shiftdown(int h[], int i);
-void insert(int h[], int p);
-int extractmin(int h[]);
-void changepriority(int h[], int i, int p);
-int pqget(int h[]);
-void removenode(int h[], int i);
-int ispqempty();
-int *priorityq(Graph_t* graf, int d[]);*/
+
 #endif

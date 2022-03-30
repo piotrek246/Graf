@@ -25,17 +25,17 @@ void freegraph(Graph_t* graf){
 
 void addtolist(Graph_t* graf, int i, int k, double weight, double min, double max){
 
-      struct Node* node = malloc(sizeof(*node));
-      node->dest = i+k;
-      node->weight = weight;//randfrom(min, max);
-      node->next = graf->adjlist[i];
-      graf->adjlist[i] = node;
-
-      node = malloc(sizeof(*node));
-      node->dest = i;
-      node->weight = weight;//randfrom(min, max);
-      node->next = graf->adjlist[i+k];
-      graf->adjlist[i+k] = node;
+  struct Node* node = malloc(sizeof(*node));
+  node->dest = i+k;
+  node->weight = weight;//randfrom(min, max);
+  node->next = graf->adjlist[i];
+  graf->adjlist[i] = node;
+  
+  node = malloc(sizeof(*node));
+  node->dest = i;
+  node->weight = weight;//randfrom(min, max);
+  node->next = graf->adjlist[i+k];
+  graf->adjlist[i+k] = node;
 
 }
 
