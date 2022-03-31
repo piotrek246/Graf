@@ -19,15 +19,20 @@ int main(int argc, char **argv){
   int v = atoi(argv[2]);
   int e = atoi(argv[3]);
   struct Graph* graf = readgraph(in);
-  FILE *out = fopen(argv[1], "w");
   Node_t *tmp = graf->adjlist[v];
   Node_t *head = graf->adjlist[v];
   Node_t *prev = NULL;
 
   while(tmp != NULL){
     if(tmp->dest != e){
-      prev = tmp;
-      tmp = tmp->next;
+      if(tmp->next == NULL && tmp->dest != e){
+        printf("Nie ma takiej krawędzi");
+        return EXIT_FAILURE;
+      }
+      else{
+        prev = tmp;
+        tmp = tmp->next;
+      }
     }
     if(tmp->dest == e && tmp == head){
       prev = tmp;
@@ -41,7 +46,7 @@ int main(int argc, char **argv){
       break;
     }
   }
-
+  FILE *out = fopen(argv[1], "w");
   printgraph(out, graf);
 
   return 0;

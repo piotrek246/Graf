@@ -4,7 +4,6 @@
 typedef struct hn{
   double data;
   int v;
-  int p;
 } *hn;
 
 typedef struct pq{
@@ -12,10 +11,9 @@ typedef struct pq{
   int size;
 } *pq;
 
-hn createheapnode(double w, int v, int p);
 int isempty(pq q);
 pq initpq(int n);
-void push(pq q, hn newnode);
+void push(pq q, hn);
 int pop(pq q);
 int extract(pq q);
 int heapsearch(pq q, int indx);
