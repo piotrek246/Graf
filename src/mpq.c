@@ -9,7 +9,7 @@ int isempty(pq q){
 pq initpq(int n){
   pq q = malloc(sizeof(*q));
   q->size = -1;
-  q->arr = calloc(n, sizeof(hn));
+  q->arr = malloc(n*sizeof(hn));
   return q;
 }
 
@@ -71,14 +71,14 @@ int pop(pq q){
   else
     s += 1;
 
-  while(s <= q->size && q->arr[i]->data > q->arr[s]->data){
+  while(s <= q->size){
     if( q->size >= 2 && q->arr[s]->data < q->arr[s+1]->data)
       ;
     else
       s += 1;
 
-    //if(q->arr[i]->data > q->arr[s]->data)
-    swap(q, s, i);
+    if(q->arr[i]->data > q->arr[s]->data)
+      swap(q, s, i);
     i = s;
     s = 2*i+1;
   }

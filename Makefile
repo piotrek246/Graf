@@ -16,14 +16,14 @@ edit: src/editmain.o src/graph.o
 	gcc src/editmain.c src/graph.c -o edit
 
 test: graph read bfs dijkstra
-	./graf testgraf0 7:4 0-1
-	./read testgraf0
-	./bfs testgraf0 0
-	./dijkstra testgraf0  0 15
-	rm testgraf0
+	./graf testgraf 7:4 0-1
+	./read testgraf
+	./bfs testgraf 0
+	./dijkstra testgraf 0 15
+	rm testgraf
 
 clean:
-	rm read graf bfs src/*.o dijkstra
+	rm read graf bfs src/*.o dijkstra edit
 
 cleantxt:
 	rm *.txt
