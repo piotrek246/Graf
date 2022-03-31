@@ -55,8 +55,8 @@ void decrease_key(pq q, int indx, double weight, double pw){
     i = (i-1)/2;
   }
 }
-int extract(pq q){
-  return q->arr[0]->v;
+hn extract(pq q){
+  return q->arr[0];
 }
 
 int pop(pq q){

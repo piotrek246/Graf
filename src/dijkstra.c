@@ -20,7 +20,7 @@ void dijkstra(Graph_t* graf, int s, int e){
   double d[n];
   int u;
   int visited[n];
-  hn m = malloc(sizeof(hn));
+  //hn m = malloc(sizeof(hn));
   Node_t* v;
   for(int i = 0; i < n; i++){
     d[i] = INF;
@@ -52,27 +52,27 @@ void dijkstra(Graph_t* graf, int s, int e){
   */
   
   hn k = malloc(sizeof(hn));
-  k->data = d[s];
+  k->data = ;
   k->v = s;
   push(q, k);
-  
   while(!isempty(q)){
     u = pop(q);
-    v = graf->adjlist[u];
     visited[u] = 1;
+    v = graf->adjlist[u];
     while(v != NULL){
       if(visited[v->dest] == 0 && ifinpq(q, v->dest) == 0){
-        m = malloc(sizeof(hn));
+        hn m = malloc(sizeof(*m));
         m->data = v->weight + d[u];
         m->v = v->dest;
-        push(q, v);
-      }
-      if(d[v->dest] > d[u] + v->weight){
-        d[v->dest] = d[u] + v->weight;
-        p[v->dest] = u;
-        decrease_key(q, v->dest, v->weight, d[u]);
+        push(q, m);
       }
       v = v->next;
+    }
+    hn w = extract(q);
+    if(d[w->v] > d[u] + w->data){
+      d[w->v] = d[u] + w->data;
+      p[w->v] = u;
+      decrease_key(q, w->v, w->data, d[u]);
     }
   }
   
@@ -86,7 +86,7 @@ void dijkstra(Graph_t* graf, int s, int e){
   printf("\n");
   
   //free(k);
-  free(m);
+  //free(m);
   free(q->arr);
   free(q);
 }
