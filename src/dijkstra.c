@@ -52,9 +52,10 @@ void dijkstra(Graph_t* graf, int s, int e){
     printf("Nie ma połączenia z %d do %d\n", s, e);
     return;
   }
-  */  
+*/   
 
   //---------------UCS---------------
+  
   hn k = malloc(sizeof(hn));
   k->data = 0;
   k->v = s;
@@ -64,12 +65,14 @@ void dijkstra(Graph_t* graf, int s, int e){
     u = pop(q);
     v = graf->adjlist[u];
     while(v != NULL){
-      if(visited[v->dest] == 0 && d[v->dest] > v->weight + d[u]){
+      if(visited[v->dest] == 0 ){
         hn m = malloc(sizeof(*m));
         m->data = v->weight + d[u];
         m->v = v->dest;
         push(q, m);
 
+      }
+      if(d[v->dest] > v->weight + d[u]){
         d[v->dest] = v->weight + d[u];
         p[v->dest] = u;
       }
@@ -81,15 +84,15 @@ void dijkstra(Graph_t* graf, int s, int e){
     printf("Nie ma połączenia z %d do %d\n", s, e);
     return;
   }
-  free(k);
+  //free(k);
 
   
   printf("\n%g\n", d[e]);
   printPath(p, e);
   printf("\n");
   
-  free(q->arr);
-  free(q);
+  //free(q->arr);
+  //free(q);
 }
 
 
