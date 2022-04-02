@@ -21,4 +21,6 @@ void printgraph(FILE* out, struct Graph* graf);
 Graph_t* initgraph(int k, int w);
 Graph_t* creategraph(int K, int W, double min, double max);
 Graph_t* readgraph(FILE *in);
+int editgraph(Graph_t* graf, int v, int e);
+
 #endif

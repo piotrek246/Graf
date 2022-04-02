@@ -14,7 +14,7 @@ void printPath(int p[], int e){
   printf("%d ", e);
 }
 
-void dijkstra(Graph_t* graf, int s, int e){
+double dijkstra(Graph_t* graf, int s, int e){
   int n = graf->k*graf->w;
   int p[n];
   double d[n];
@@ -29,7 +29,7 @@ void dijkstra(Graph_t* graf, int s, int e){
   d[s] = 0;
   pq q = initpq(n);
   
-  /*
+  
   for(int i = 0; i < n; i++){
     hn k = malloc(sizeof(*k));
     k->data = d[i];
@@ -48,14 +48,18 @@ void dijkstra(Graph_t* graf, int s, int e){
       v = v->next;
     }
   }
-  if(d[e] == INF){
-    printf("Nie ma połączenia z %d do %d\n", s, e);
-    return;
+  for(int i = 0; i < n; i++){
+    if(d[i] == INF)
+      return -1;
   }
-*/   
+  /*if(d[e] == INF){
+    printf("Nie ma połączenia z %d do %d\n", s, e);
+    return -1;
+  }
+   
 
   //---------------UCS---------------
-  
+  /*
   hn k = malloc(sizeof(hn));
   k->data = 0;
   k->v = s;
@@ -65,14 +69,12 @@ void dijkstra(Graph_t* graf, int s, int e){
     u = pop(q);
     v = graf->adjlist[u];
     while(v != NULL){
-      if(visited[v->dest] == 0 ){
+      if(visited[v->dest] == 0 && d[v->dest] > v->weight + d[u]){
         hn m = malloc(sizeof(*m));
         m->data = v->weight + d[u];
         m->v = v->dest;
         push(q, m);
 
-      }
-      if(d[v->dest] > v->weight + d[u]){
         d[v->dest] = v->weight + d[u];
         p[v->dest] = u;
       }
@@ -80,19 +82,24 @@ void dijkstra(Graph_t* graf, int s, int e){
     }
     visited[u] = 1;
   }
+  for(int i = 0; i < n; i++){
+    if(d[i] == INF)
+      return -1;
+  }
   if(visited[e] != 1){
-    printf("Nie ma połączenia z %d do %d\n", s, e);
-    return;
+    return -1;
   }
   //free(k);
+  */  
 
-  
-  printf("\n%g\n", d[e]);
-  printPath(p, e);
-  printf("\n");
+  int end = d[e];
+  //printf("\n%lf\n", d[e]);
+  //printPath(p, e);
+  //printf("\n");
   
   //free(q->arr);
   //free(q);
+  return end;
 }
 
 

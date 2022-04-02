@@ -1,6 +1,3 @@
-#ifndef GRAP_H_
-#define GRAP_H_
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -120,4 +117,33 @@ double randfrom(double min, double max){
     double div = RAND_MAX / range;
     return min + (rand() / div);
 }
-#endif 
+
+int editgraph(Graph_t* graf, int s, int e){
+  Node_t *tmp = graf->adjlist[s];
+  Node_t *head = graf->adjlist[s];
+  Node_t *prev = NULL;
+
+  while(tmp != NULL){
+    if(tmp->dest != e){
+      if(tmp->next == NULL && tmp->dest != e){
+        return -1;
+      }
+      else{
+        prev = tmp;
+        tmp = tmp->next;
+      }
+    }
+    if(tmp->dest == e && tmp == head){
+      prev = tmp;
+      graf->adjlist[s] = prev->next;
+      free(tmp);
+      break;
+    }
+    if(tmp->dest == e && tmp != head){
+      prev->next = tmp->next;
+      free(tmp);
+      break;
+    }
+  }
+  return 0;
+}

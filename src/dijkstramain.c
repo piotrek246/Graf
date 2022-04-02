@@ -4,8 +4,6 @@
 #include "mpq.h"
 #include "dijkstra.h"
 
-#define MAX_BUF 1024
-
 int main(int argc, char** argv){
   if(argc < 4) {
     printf("Niepoprawna ilość argumentów\n");

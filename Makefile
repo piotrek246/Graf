@@ -15,6 +15,11 @@ dijkstra: src/dijkstramain.o src/graph.o src/mpq.o src/dijkstra.o
 edit: src/editmain.o src/graph.o
 	gcc src/editmain.c src/graph.c -o edit
 
+test_dijkstra: src/test_dijkstra.o src/dijkstra.o src/graph.o src/mpq.o
+	gcc src/test_dijkstra.c src/graph.c src/mpq.c src/dijkstra.c -o test_dijkstra
+	./test_dijkstra
+	rm test_dijkstra
+
 test: graph read bfs dijkstra
 	./graf testgraf 7:4 0-1
 	./read testgraf
