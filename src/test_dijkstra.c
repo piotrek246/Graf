@@ -42,14 +42,31 @@ int isolatednode(){
   return 0;
 }
 
+int twovertices(){
+  struct Graph *graf = creategraph(N, N, 1, 20);
+  int res = 0;
+  editgraph(graf, 1, N+1);
+  editgraph(graf, N+1, 1);
+  editgraph(graf, 1, 2);
+  editgraph(graf, 2, 1);
+  editgraph(graf, 0, N);
+  editgraph(graf, N, 0);
+  if(dijkstra(graf, 0, 1) != -1 && dijkstra(graf, 1, 0) != -1)
+    res++;
+  if(dijkstra(graf, 0, N/2) == -1 && dijkstra(graf, 0, N/2) == -1)
+    res++;
+  return res;
+}
+
 int main(int argc, char** argv){
   srand(time(NULL));
   struct Graph *graf = creategraph(N, N, 1, 20);
 
+//Dijkstra all paths
   if(dijkstra(graf, 0, 13) == -1)
-    printf("DIJKSTRA TEST: FAILED\n");
+    printf("\nALL PATHS TEST: FAILED\n");
   else
-    printf("DIJKSTRA TEST: OK\n");
+    printf("\nALL PATHS TEST: OK\n");
 
 //shortest path test
   shortestpath();
@@ -57,6 +74,11 @@ int main(int argc, char** argv){
 //isolated node test
   isolatednode();
 
+//2 vertices graph
+  if(twovertices() == 2)
+    printf("TWO VERTICES TEST: OK\n");
+  else
+    printf("TWO VERTICES TEST: FAILED\n");
 
   return 0;
 }

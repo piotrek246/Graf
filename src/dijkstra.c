@@ -48,12 +48,7 @@ double dijkstra(Graph_t* graf, int s, int e){
       v = v->next;
     }
   }
-  for(int i = 0; i < n; i++){
-    if(d[i] == INF)
-      return -1;
-  }
-  /*if(d[e] == INF){
-    printf("Nie ma połączenia z %d do %d\n", s, e);
+  if(d[e] == INF){
     return -1;
   }
    
@@ -82,23 +77,18 @@ double dijkstra(Graph_t* graf, int s, int e){
     }
     visited[u] = 1;
   }
-  for(int i = 0; i < n; i++){
-    if(d[i] == INF)
-      return -1;
-  }
   if(visited[e] != 1){
     return -1;
   }
-  //free(k);
-  */  
+  */
 
   int end = d[e];
   //printf("\n%lf\n", d[e]);
   //printPath(p, e);
   //printf("\n");
   
-  //free(q->arr);
-  //free(q);
+  free(q->arr);
+  free(q);
   return end;
 }
 
