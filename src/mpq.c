@@ -19,50 +19,40 @@ void swap(pq q, int i, int p){
   q->arr[i] = tmp;
 }
 
-int ifinpq(pq q, int indx){
-  for(int i = q->size; i >= 0; i--)
-    if(q->arr[i]->v == indx)
-      return 1;
-  return 0;
+void swaparr(int hp[], int i, int j){
+  int tmp = hp[i];
+  hp[i] = hp[j];
+  hp[j] = tmp;
 }
 
-void push(pq q, hn new){
+void push(pq q, int heapplace[], hn new){
   q->size++;
   int i = q->size;
   q->arr[i] = new;
   
   while(i > 0 && q->arr[i]->data < q->arr[(i-1)/2]->data){
+    swaparr(heapplace, q->arr[i]->v, q->arr[(i-1)/2]->v);
     swap(q, i, (i-1)/2);
     i = (i-1)/2;
   }
 }
 
-int heapsearch(pq q, int indx){
-  int i;
-  for(i = q->size; i >= 0; i--)
-    if(q->arr[i]->v == indx)
-      return i;
-  return -1;
-}
-void decrease_key(pq q, int indx, double weight, double pw){
-  int i = heapsearch(q, indx);
-  if(i == -1){
-    return;
-  } 
+void decrease_key(pq q, int heapplace[], int indx, double weight, double pw){
+  int i = heapplace[indx];
   q->arr[i]->data = pw + weight;
   while(i > 0 && q->arr[i]->data < q->arr[(i-1)/2]->data){
+    swaparr(heapplace, q->arr[i]->v, q->arr[(i-1)/2]->v);
     swap(q, i, (i-1)/2);
     i = (i-1)/2;
   }
 }
-hn extract(pq q){
-  return q->arr[0];
-}
 
-int pop(pq q){
+int pop(pq q, int heapplace[]){
   int i = 0;
   int s = 2*i+1;
   int result = q->arr[0]->v;
+  heapplace[q->arr[q->size]->v] = 0;
+  //heapplace[q->arr[0]->v] = -1;
   q->arr[0] = q->arr[q->size];
   q->size--;
   
@@ -77,8 +67,10 @@ int pop(pq q){
     else
       s += 1;
 
-    if(q->arr[i]->data > q->arr[s]->data)
+    if(q->arr[i]->data > q->arr[s]->data){
+      swaparr(heapplace, q->arr[i]->v, q->arr[s]->v);
       swap(q, s, i);
+    }
     i = s;
     s = 2*i+1;
   }

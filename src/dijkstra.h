@@ -3,5 +3,5 @@
 #include "mpq.h"
 
 //void relax(pq q, Node_t* v, hn u);
-double dijkstra(Graph_t* graf, int s, int e);
+double *dijkstra(Graph_t* graf, int s);
 #endif

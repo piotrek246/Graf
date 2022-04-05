@@ -30,7 +30,10 @@ int main(int argc, char** argv){
     return 1;
   }
   else{
-    dijkstra(graf, start, end);
+    double *d = dijkstra(graf, start);
+    if(d == NULL)
+      return EXIT_FAILURE;
+    printf("%g\n",d[end]);
     freegraph(graf);
     fclose(in);
   }
