@@ -2,6 +2,14 @@
 #define DIJKSTRA_H
 #include "mpq.h"
 
+typedef struct distance_parents{
+  double *d;
+  int *p;
+  int exit;
+} distance_parents;
+
 //void relax(pq q, Node_t* v, hn u);
-double *dijkstra(Graph_t* graf, int s);
+distance_parents dijkstra(Graph_t* graf, int s);
+void printPath(int p[], int e);
+
 #endif

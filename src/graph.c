@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "graph.h"
+#include "utils.c"
 
 void freegraph(Graph_t* graf){
   int n = graf->w*graf->k;
@@ -110,12 +111,6 @@ Graph_t* readgraph(FILE *in){
     count++;
   }
   return graf;
-}
-
-double randfrom(double min, double max){
-    double range = (max - min); 
-    double div = RAND_MAX / range;
-    return min + (rand() / div);
 }
 
 int editgraph(Graph_t* graf, int s, int e){

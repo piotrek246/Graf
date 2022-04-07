@@ -2,10 +2,16 @@
 #include <stdlib.h>
 #include "graph.h"
 #include "bfs.h"
+#include "utils.h"
+
 
 #define MAX_BUF 1024
 
 int main(int argc, char** argv){
+  if(argc < 2){
+    helper();
+    return EXIT_FAILURE;
+  }
   if(argc < 3 || argc > 3) {
     printf("Niepoprawna ilość argumentów\n");
     return EXIT_FAILURE;

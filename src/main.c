@@ -2,9 +2,13 @@
 #include <stdlib.h>
 #include <time.h>
 #include "graph.h"
+#include "utils.h"
 
 int main(int argc, char** argv){
-  srand(time(NULL));
+  if(argc < 2){
+    helper();
+    return EXIT_FAILURE;
+  }
 
   if(argc < 4 || argc > 4){
     printf("Niepoprawna ilość argumentów\n");
@@ -39,6 +43,7 @@ int main(int argc, char** argv){
     return EXIT_FAILURE;
   }
   
+  srand(time(NULL));
 	struct Graph *graf = creategraph(k, w, min, max);
 	printgraph(out, graf);
   freegraph(graf);

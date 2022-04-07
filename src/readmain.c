@@ -1,9 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "graph.h"
+#include "utils.h"
 
 int main(int argc, char** argv){
-
+  if(argc < 2){
+    helper();
+    return EXIT_FAILURE;
+  }
   if(argc < 2 || argc > 2){
     printf("Niepoprawna ilość argumentów\n");
     return EXIT_FAILURE;
