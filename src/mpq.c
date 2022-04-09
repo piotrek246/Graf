@@ -38,12 +38,15 @@ void push(pq q, int heapplace[], hn new){
 }
 
 void decrease_key(pq q, int heapplace[], int indx, double weight, double pw){
-  int i = heapplace[indx];
-  q->arr[i]->data = pw + weight;
-  while(i > 0 && q->arr[i]->data < q->arr[(i-1)/2]->data){
-    swaparr(heapplace, q->arr[i]->v, q->arr[(i-1)/2]->v);
-    swap(q, i, (i-1)/2);
-    i = (i-1)/2;
+  if(heapplace[indx] != -1){
+    int i = heapplace[indx];
+    if(q->arr[i]->data > pw + weight)
+      q->arr[i]->data = pw + weight;
+    while(i > 0 && q->arr[i]->data < q->arr[(i-1)/2]->data){
+      swaparr(heapplace, q->arr[i]->v, q->arr[(i-1)/2]->v);
+      swap(q, i, (i-1)/2);
+      i = (i-1)/2;
+    }
   }
 }
 
@@ -51,8 +54,9 @@ int pop(pq q, int heapplace[]){
   int i = 0;
   int s = 2*i+1;
   int result = q->arr[0]->v;
+  hn tmp = q->arr[0];
   heapplace[q->arr[q->size]->v] = 0;
-  //heapplace[q->arr[0]->v] = -1;
+  heapplace[q->arr[0]->v] = -1;
   q->arr[0] = q->arr[q->size];
   q->size--;
   
@@ -74,6 +78,7 @@ int pop(pq q, int heapplace[]){
     i = s;
     s = 2*i+1;
   }
+  free(tmp);
   return result;
 }
 

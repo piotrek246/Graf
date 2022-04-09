@@ -17,4 +17,5 @@ void enqueue(Queue_t *q, int value);
 int dequeue(Queue_t *q);
 void printQueue(Queue_t *q);
 int ifInQueue(Queue_t *q, int value);
+void freeque(Queue_t *q);
 #endif

@@ -11,6 +11,7 @@ int isNumber(char number[]){
       return 1;
   return 0;
 }
+
 double randfrom(double min, double max){
     double range = (max - min); 
     double div = RAND_MAX / range;

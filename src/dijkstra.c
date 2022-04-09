@@ -18,9 +18,9 @@ void printPath(int p[], int e){
 distance_parents dijkstra(Graph_t* graf, int s){
   int n = graf->k*graf->w;
   int u;
-  int *p = malloc(sizeof(int)*n);
-  double *d = malloc(sizeof(double)*n);
-  int *heapplace = malloc(sizeof(int)*n);
+  int *heapplace = malloc(sizeof(*heapplace)*n);
+  int *p = malloc(sizeof(*p)*n);
+  double *d = malloc(sizeof(*d)*n);
   distance_parents error;
   error.exit = 1;
   Node_t* v;
@@ -38,11 +38,17 @@ distance_parents dijkstra(Graph_t* graf, int s){
     k->v = i;
     push(q, heapplace, k);
   }
+
   while(!isempty(q)){
     u = pop(q, heapplace);
     v = graf->adjlist[u];
     if(v->weight < 0){
       printf("Graf z wartościami ujemnymi\n");
+      free(p);
+      free(d);
+      free(heapplace);
+      free(q->arr);
+      free(q);
       return error;
     }
     while(v != NULL){
@@ -59,20 +65,10 @@ distance_parents dijkstra(Graph_t* graf, int s){
   result.d = d;
   result.p = p;
   result.exit = 0;
-  //if(d[e] == INF){
-  //  return -1;
-  //}
 
-  //int end = d[e];
-  //printf("\n%lf", d[e]);
-  //printPath(p, e);
-  //printf("\n");
-  //free(p);
-  //free(d);
   free(heapplace);
   free(q->arr);
   free(q);
   return result;
 }
-
 

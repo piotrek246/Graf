@@ -16,9 +16,18 @@ int main(int argc, char** argv){
     printf("Niepoprawna ilość argumentów\n");
     return EXIT_FAILURE;
   }
+  if(isNumber(argv[2]) == 1){
+    printf("Niepoprawny format numeru węzła\n");
+    return 1;
+  }
+
+  FILE *in = fopen(argv[1], "r");
+  if(in == NULL){ 
+    printf("nie mogę czytać\n");
+    return EXIT_FAILURE;
+  }
   int w, k;
   char *nazwa_pliku = argv[1];
-  FILE *in = fopen(argv[1], "r");
   int start = atoi(argv[2]);
 
   struct Graph* graf = readgraph(in);

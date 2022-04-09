@@ -25,13 +25,13 @@ void addtolist(Graph_t* graf, int i, int k, double weight, double min, double ma
 
   struct Node* node = malloc(sizeof(*node));
   node->dest = i+k;
-  node->weight = weight;//randfrom(min, max);
+  node->weight = randfrom(min, max);
   node->next = graf->adjlist[i];
   graf->adjlist[i] = node;
   
   node = malloc(sizeof(*node));
   node->dest = i;
-  node->weight = weight;//randfrom(min, max);
+  node->weight = randfrom(min, max);
   node->next = graf->adjlist[i+k];
   graf->adjlist[i+k] = node;
 
@@ -99,7 +99,11 @@ Graph_t* readgraph(FILE *in){
 
   while (fgets(buf, MAX_BUF, in) != NULL){
     char *data = buf;
-    while (sscanf(data, "%d :%lf%n", &dest, &weight, &offset) == 2)
+    
+    if((count >1 && sscanf(data, "%d :%lf", &dest, &weight) != 2)){
+      return NULL;
+    }
+    while(sscanf(data, "%d :%lf%n", &dest, &weight, &offset) == 2)
     {
       Node_t* node = malloc(sizeof(*node));
       node->dest = dest;

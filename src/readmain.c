@@ -18,11 +18,16 @@ int main(int argc, char** argv){
 
   if(in == NULL){ 
     printf("nie mogę czytać\n");
-    fclose(in);
     return EXIT_FAILURE;
   }
   else{
     struct Graph* graf = readgraph(in);
+    if(graf == NULL){
+      printf("Błędny format pliku\n");
+      fclose(in);
+      fclose(stdout);
+      return 1;
+    }
     printgraph(stdout, graf);
     freegraph(graf);
     fclose(in);

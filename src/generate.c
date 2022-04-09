@@ -1,25 +1,26 @@
-#include <stdio.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include <time.h>
 #include "graph.h"
 #include "utils.h"
+#include <string.h>
+#include "bfs.h"
 
-int main(int argc, char** argv){
+int main(int argc, char**argv){
   if(argc < 2){
     helper();
     return EXIT_FAILURE;
   }
 
-  if(argc < 4 || argc > 4){
+  if(argc < 6 || argc > 6){
     printf("Niepoprawna ilość argumentów\n");
     return EXIT_FAILURE;
   }
 
-  char *nazwa_pliku = argv[1];
   int w, k;
   double min, max;
 
-  if(sscanf(argv[2], "%d:%d", &w, &k) != 2){
+  if(sscanf(argv[1], "%d:%d", &w, &k) != 2){
     printf("Niepoprawny format rzędów i kolumn\n");
     return EXIT_FAILURE;
   }
@@ -27,29 +28,23 @@ int main(int argc, char** argv){
     printf("Niepoprawne wartośći wierszy lub kolumn\n");
     return EXIT_FAILURE;
   }
-  if(sscanf(argv[3], "%lf-%lf", &min, &max) != 2){
+  if(sscanf(argv[2], "%lf-%lf", &min, &max) != 2){
     printf("Niepoprawnie podany przedział wagi\n");
     return EXIT_FAILURE;
   }
-  if(min > max){
+  if(min >= max){
     printf("Niepoprawnie podany przedział wagi\n");
     return EXIT_FAILURE;
-  }  
-  //sprawdza czy może pisać
-  FILE *out = fopen(argv[1], "r");
-  if(out != NULL){ 
-    printf("Nie mogę nadpisać\n");
-    fclose(out);
-    return EXIT_FAILURE;
-  }
-  else{
-    out = fopen(argv[1], "w");
-  }
+  } 
   srand(time(NULL));
 	struct Graph *graf = creategraph(k, w, min, max);
-	printgraph(out, graf);
+  if(argc = 5){
+    if(!strcmp(argv[3],"bfs")){
+      freegraph(graf);
+      return 1;
+    }
+    //bfs(graf, atoi(argv[4]));
+  }
   freegraph(graf);
-  fclose(out);
-
   return 0;
 }

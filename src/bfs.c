@@ -8,9 +8,9 @@ enum colors{WHITE, GRAY, BLACK};
 int bfs(Graph_t* graf, int s){
 
   int n = graf->k * graf->w;
-  int color[n];
-  int distance[n];
-  int parent[n];
+  int *color = malloc(sizeof(*color)*n);
+  int *distance = malloc(sizeof(*distance)*n);
+  int *parent = malloc(sizeof(*parent)*n);
   Queue_t *q = malloc(sizeof(*q)); 
   initQueue(q);
 
@@ -40,9 +40,17 @@ int bfs(Graph_t* graf, int s){
     color[w] = BLACK;
   }
   for(int i = 0; i < n; i++){
-    if(color[i] != BLACK)
+    if(color[i] != BLACK){
+      free(distance);
+      free(color);
+      free(parent);
+      free(q);
       return 1;
+    }
   }
+  free(distance);
+  free(color);
+  free(parent);
   free(q);
   return 0;
 }

@@ -30,6 +30,7 @@ int dequeue(Queue_t *q){
   if(tmp == q->rear){
     q->front = NULL;
     q->rear = NULL;
+    free(tmp);
     return n;
   }
   q->front = q->front->next;
