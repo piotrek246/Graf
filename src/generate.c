@@ -40,10 +40,9 @@ int main(int argc, char**argv){
   if(argc == 3){
     srand(time(NULL));
 	  struct Graph *graf = creategraph(k, w, min, max);
+    freegraph(graf);
     return EXIT_SUCCESS;
   }
-  srand(time(NULL));
-	struct Graph *graf = creategraph(k, w, min, max);
 
   int num;
   if(strcmp(argv[3], "bfs") == 0){
@@ -55,7 +54,7 @@ int main(int argc, char**argv){
   else{
     num = 3;
   }
-  //if(strcmp(argv[3], "bfs") || strcmp(argv[3], "dijkstra")){
+
   switch (num){
     //----------bfs----------
     case 1:
@@ -70,18 +69,24 @@ int main(int argc, char**argv){
           printf("Niepoprawnie podany węzeł początkowy\n");
           return EXIT_FAILURE;
         }
+      	struct Graph *graf = creategraph(k, w, min, max);
+
         if(start >= graf->k*graf->w){
           printf("Podano numer węzła który nie należy do grafu\n");
+          freegraph(graf);
           return EXIT_FAILURE;
         }
         result = bfs(graf, start);
         
-        if(result == 0)
+        if(result == 0){
           printf("\nGraf jest spójny\n");
-        else
-          printf("\nGraf nie jest spójny\n");
           freegraph(graf);
           return EXIT_SUCCESS;
+        }
+        else{
+          printf("\nGraf nie jest spójny\n");
+          freegraph(graf);
+        }
       }
       break;
     case 2:
@@ -94,14 +99,12 @@ int main(int argc, char**argv){
       start = atoi(argv[4]);
     else{
       printf("Niepoprawnie podany węzeł początkowy\n");
-      freegraph(graf);
       return EXIT_FAILURE;
     }
     
     for(int i = 0; i < argc-5; i++){
       if(isNumber(argv[5+i]) == 1){
         printf("Niepoprawnie podany numeru węzła\n");
-        freegraph(graf);
         return EXIT_FAILURE;
       }
     }
@@ -111,6 +114,7 @@ int main(int argc, char**argv){
         end[i] = atoi(argv[5+i]);
     }
 
+    struct Graph *graf = creategraph(k, w, min, max);
     for(int i = 0; i < argc-5; i++){
       if(end[i] >= graf->k*graf->w || start >=graf->k*graf->w){
         printf("Podano numer węzła który nie należy do grafu\n");
@@ -142,20 +146,12 @@ int main(int argc, char**argv){
     free(end);
     free(dp.p);
     free(dp.d);
+    freegraph(graf);
     break;
 
   default:
     printf("Zła nazwa funkcji\n");
-    freegraph(graf);
     return EXIT_FAILURE;
   }
-
-  /*else{
-    printf("Zła nazwa funkcji\n");
-    freegraph(graf);
-    return EXIT_FAILURE;
-  }
-  }*/
-  freegraph(graf);
   return 0;
 }
