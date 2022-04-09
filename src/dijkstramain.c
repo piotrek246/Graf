@@ -25,7 +25,7 @@ int main(int argc, char** argv){
   if(isNumber(argv[2]) == 1){
     printf("Niepoprawny format numeru węzła\n");
     fclose(in);
-    return 1;
+    return EXIT_FAILURE;
   }
   int start = atoi(argv[2]);
 
@@ -33,7 +33,7 @@ int main(int argc, char** argv){
     if(isNumber(argv[3+i]) == 1){
       printf("Niepoprawny format numeru węzła\n");
       fclose(in);
-      return 1;
+      return EXIT_FAILURE;
     }
   }
   int *end = malloc(sizeof(int)*(argc-3));
@@ -47,7 +47,7 @@ int main(int argc, char** argv){
     free(end);
     freegraph(graf);
     fclose(in);
-    return 1;
+    return EXIT_FAILURE;
   }
   for(int i = 0; i < argc-3; i++){
     if(end[i] >= graf->k*graf->w || start >=graf->k*graf->w){

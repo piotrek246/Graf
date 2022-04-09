@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "mpq.h"
 
-int isempty(pq q){
+int ispqempty(pq q){
   return (q->size < 0);
 }
 

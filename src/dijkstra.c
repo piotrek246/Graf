@@ -39,7 +39,7 @@ distance_parents dijkstra(Graph_t* graf, int s){
     push(q, heapplace, k);
   }
 
-  while(!isempty(q)){
+  while(!ispqempty(q)){
     u = pop(q, heapplace);
     v = graf->adjlist[u];
     if(v->weight < 0){

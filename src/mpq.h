@@ -11,7 +11,7 @@ typedef struct pq{
   int size;
 } *pq;
 
-int isempty(pq q);
+int ispqempty(pq q);
 pq initpq(int n);
 void push(pq q, int heapplace[], hn new);
 int pop(pq q, int heapplace[]);

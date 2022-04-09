@@ -1,7 +1,7 @@
 all: graf read bfs dijkstra generate edit
 
-generate: src/generate.o src/graph.o 
-	gcc src/generate.c src/graph.c -g -o generate
+generate: src/generate.o src/graph.o src/mpq.o src/dijkstra.o src/queue.o src/bfs.o
+	gcc src/generate.c src/graph.c src/mpq.c src/dijkstra.c src/queue.c src/bfs.c -g -o generate
 
 graf: src/main.o src/graph.o 
 	gcc src/main.c src/graph.c -g -o graf
