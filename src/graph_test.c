@@ -50,6 +50,7 @@ int initgraph_test(){
   int k = 30;
   int w = 20;
   int i = 0;
+  
   Graph_t *graf = initgraph(k, w);
 
   if(graf->k*graf->w != k*w)
@@ -70,7 +71,7 @@ int addtolist_test(){
 
   addtolist(graf, 0, 1, k, min, max);
 
-  if((graf->adjlist[0]->weight > max && graf->adjlist[0]->weight < min) && (graf->adjlist[1]->weight > max && graf->adjlist[1]->weight > min)){
+  if((graf->adjlist[0]->weight > max && graf->adjlist[0]->weight < min) && (graf->adjlist[1]->weight > max && graf->adjlist[1]->weight < min)){
     freegraph(graf);
     return 1;
   }
@@ -108,7 +109,7 @@ int readgraph_test(FILE *in){
   Graph_t *graf = readgraph(in);
   Node_t *tmp = graf->adjlist[0];
 
-  //k:10, w:30, min:0 i max:2 to wartości które znajdują się wpliku
+  //k:10, w:30, min:0 i max:2 to wartości które znajdują się w pliku
   //oczekuje, że przeczytany graf będzie taki jaki znajduje się w zadanym pliku
   for(; i < 10*30; i++){
     if(graf->adjlist[i] == NULL)

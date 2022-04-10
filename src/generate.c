@@ -40,6 +40,7 @@ int main(int argc, char**argv){
   if(argc == 3){
     srand(time(NULL));
 	  struct Graph *graf = creategraph(k, w, min, max);
+    printf("Poprawnie stworzono graf\n");
     freegraph(graf);
     return EXIT_SUCCESS;
   }
@@ -58,7 +59,7 @@ int main(int argc, char**argv){
   switch (num){
     //----------bfs----------
     case 1:
-      if(argc == 4){
+      if(argc == 4 || argc > 5){
         printf("Niepoprawna ilość argumentów dla bfs\n");
         return EXIT_FAILURE;
       }
@@ -89,6 +90,7 @@ int main(int argc, char**argv){
         }
       }
       break;
+      
     case 2:
     //----------dijkstra----------
     if(argc >= 4 && argc <= 5){
@@ -115,6 +117,7 @@ int main(int argc, char**argv){
     }
 
     struct Graph *graf = creategraph(k, w, min, max);
+
     for(int i = 0; i < argc-5; i++){
       if(end[i] >= graf->k*graf->w || start >=graf->k*graf->w){
         printf("Podano numer węzła który nie należy do grafu\n");

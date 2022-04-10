@@ -37,7 +37,7 @@ test: graf read bfs dijkstra
 	rm testgraf
 
 clean:
-	rm read graf bfs src/*.o dijkstra edit
+	rm read graf bfs src/*.o dijkstra edit generate
 
 cleantxt:
 	rm *.txt
