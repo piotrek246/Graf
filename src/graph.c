@@ -9,9 +9,7 @@ void freegraph(Graph_t* graf){
   struct Node* tmp;
 
   for(int i = 0; i < n; i++){
-
-    while (graf->adjlist[i] != NULL)
-    {
+    while(graf->adjlist[i] != NULL){
       tmp = graf->adjlist[i];
       graf->adjlist[i] = graf->adjlist[i]->next;
       free(tmp);
@@ -43,7 +41,7 @@ struct Graph* initgraph(int k, int w){
   graf->w = w;
   int n = graf->k*graf->w; //liczba węzłów
   
-  graf->adjlist = calloc(n, sizeof(Node_t));
+  graf->adjlist = calloc(k*w, sizeof(*graf->adjlist));
   return graf;
 }
 
@@ -94,8 +92,10 @@ Graph_t* readgraph(FILE *in){
   int count = -1;
   int offset;
 
-  fscanf(in, "%d %d", &w, &k);
+  if(fscanf(in, "%d %d", &w, &k) != 2)
+    return NULL;
   Graph_t* graf = initgraph(k, w);
+  
 
   while (fgets(buf, MAX_BUF, in) != NULL){
     char *data = buf;

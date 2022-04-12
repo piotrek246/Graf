@@ -2,6 +2,8 @@
 #define DIJKSTRA_H
 #include "mpq.h"
 
+#define INF 10000000
+
 typedef struct distance_parents{
   double *d;
   int *p;

@@ -8,13 +8,15 @@ typedef struct hn{
 
 typedef struct pq{
   hn *arr;
+  int *heapplace;
   int size;
 } *pq;
 
 int ispqempty(pq q);
 pq initpq(int n);
-void push(pq q, int heapplace[], hn new);
-int pop(pq q, int heapplace[]);
-void decrease_key(pq q, int heapplace[], int indx, double weight, double pw);
+void push(pq q, hn new);
+int pop(pq q);
+void decrease_key(pq q, int indx, double weight, double pw);
+void freepq(pq q);
 
 #endif

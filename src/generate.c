@@ -18,7 +18,7 @@ int main(int argc, char**argv){
     return EXIT_FAILURE;
   }
 
-  int w, k, result, start;
+  int w, k, *result, start;
   double min, max;
 
   if(sscanf(argv[1], "%d:%d", &w, &k) != 2){
@@ -78,18 +78,21 @@ int main(int argc, char**argv){
           return EXIT_FAILURE;
         }
         result = bfs(graf, start);
-        
-        if(result == 0){
-          printf("\nGraf jest spójny\n");
-          freegraph(graf);
-          return EXIT_SUCCESS;
+        int n = graf->w*graf->k;
+        for(int i = 0; i < n; i++){
+          if(result[i] != BLACK){
+            printf("\nGraf jest spójny\n");
+            freegraph(graf);
+            free(result);
+            return EXIT_FAILURE; 
+          }
         }
-        else{
-          printf("\nGraf nie jest spójny\n");
-          freegraph(graf);
+        printf("\nGraf jest spójny\n");
+        freegraph(graf);
+        free(result);
+        return EXIT_SUCCESS;
         }
-      }
-      break;
+        break;
       
     case 2:
     //----------dijkstra----------

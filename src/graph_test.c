@@ -13,6 +13,7 @@ int printgraph_test(char *argv);
 int main(int argc, char** argv){
   Graph_t *graf = creategraph(30, 20 ,0 , 19);
   FILE *in = fopen(argv[1], "r");
+  printf("\nGraph Tests:");
   //----initgraph_test----
   if(initgraph_test() != 0)
     printf("\ninitgraph_test: FAILED\n");
@@ -39,9 +40,9 @@ int main(int argc, char** argv){
 
   //----printgraph_test----
   if(printgraph_test(argv[2]) != 0)
-    printf("printgraph_test: FAILED\n\n");
+    printf("printgraph_test: FAILED\n");
   else
-    printf("printgraph_test: OK\n\n");
+    printf("printgraph_test: OK\n");
 
   return 0;
 }

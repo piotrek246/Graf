@@ -27,7 +27,6 @@ distance_parents dijkstra(Graph_t* graf, int s){
   for(int i = 0; i < n; i++){
     d[i] = INF;
     p[i] = -1;
-    heapplace[i] = i;
   }
   d[s] = 0;
   pq q = initpq(n);
@@ -36,17 +35,18 @@ distance_parents dijkstra(Graph_t* graf, int s){
     hn k = malloc(sizeof(*k));
     k->data = d[i];
     k->v = i;
-    push(q, heapplace, k);
+    q->heapplace[i] = i;
+    push(q, k);
   }
 
   while(!ispqempty(q)){
-    u = pop(q, heapplace);
+    u = pop(q);
     v = graf->adjlist[u];
     if(v->weight < 0){
       printf("Graf z wartościami ujemnymi\n");
       free(p);
       free(d);
-      free(heapplace);
+      free(q->heapplace);
       free(q->arr);
       free(q);
       return error;
@@ -55,7 +55,7 @@ distance_parents dijkstra(Graph_t* graf, int s){
       if(d[v->dest] > d[u] + v->weight){
         d[v->dest] = d[u] + v->weight;
         p[v->dest] = u;
-        decrease_key(q, heapplace, v->dest, v->weight, d[u]);
+        decrease_key(q, v->dest, v->weight, d[u]);
       }
       v = v->next;
     }
@@ -66,7 +66,7 @@ distance_parents dijkstra(Graph_t* graf, int s){
   result.p = p;
   result.exit = 0;
 
-  free(heapplace);
+  free(q->heapplace);
   free(q->arr);
   free(q);
   return result;

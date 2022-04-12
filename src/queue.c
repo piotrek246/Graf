@@ -2,9 +2,11 @@
 #include <stdlib.h>
 #include "queue.h"
 
-void initQueue(Queue_t *q){
-    q->front = NULL;
-    q->rear = NULL;
+Queue_t *initQueue(){
+  Queue_t *q = malloc(sizeof(*q)); 
+  q->front = NULL;
+  q->rear = NULL;
+  return q;
 }
 
 int isempty(Queue_t *q){
@@ -36,22 +38,4 @@ int dequeue(Queue_t *q){
   q->front = q->front->next;
   free(tmp);
   return n;
-}
-void printQueue(Queue_t *q){
-  Qnode_t *tmp = q->front;
-  while(tmp != NULL){
-    printf("[%d] ", tmp->data);
-    tmp = tmp->next;
-  }
-  printf("\n");
-}
-
-int ifInQueue(Queue_t *q, int value){
-  Qnode_t* tmp = q->front;
-  while(tmp != NULL){
-    if(tmp->data == value)
-      return 1;
-    tmp = tmp->next;
-  }
-  return 0;
 }

@@ -19,7 +19,9 @@ double randfrom(double min, double max){
 }
 
 void helper(){
-  printf("ARGUMENTY WYWOŁANIA PROGRAMU:\n\nGeneracja grafu z zapisem do pliku:\n./graf <nazwa pliku> <kolumny:wiersze> [waga]<od-do>\nnp:./graf graf1 3:3 0-1");
+  printf("ARGUMENTY WYWOŁANIA PROGRAMU:");
+  printf("\n\nGenerowanie grafu bez zapisu do pliku:\n./generate <kolumny:wiersze> [waga]<od-do> [tryb]<bfs/dijkstra> <węzeł początkowy> [dla trybu dijkstra]<węzły końcowe>");
+  printf("\n\nGeneracja grafu z zapisem do pliku:\n./graf <nazwa pliku> <kolumny:wiersze> [waga]<od-do>\nnp:./graf graf1 3:3 0-1");
   printf("\n\nOdczytywanie grafu z pliku:\n./read <nazwa pliku>\nnp:./read graf1");
   printf("\n\nAlgorytm BFS:\n./bfs <nazwa pliku> <węzeł startowy>\nnp:./bfs graf1 0");
   printf("\n\nAlgorytm Dijkstry:\n./dijkstra <nazwa pliku> <węzeł startowy> <węzły końcowe odzielone spacją>\nnp:./dijkstra graf1 0 3 8\n");

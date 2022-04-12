@@ -27,11 +27,13 @@ int main(int argc, char** argv){
     return EXIT_FAILURE;
   }
   int w, k;
-  char *nazwa_pliku = argv[1];
+  int *result;
   int start = atoi(argv[2]);
 
   struct Graph* graf = readgraph(in);
-  if(start >= graf->k*graf->w){
+  int n = graf->w*graf->k;
+
+  if(start >= n){
     printf("Podano numer węzła który nie należy do grafu\n");
     freegraph(graf);
     fclose(in);
@@ -44,13 +46,21 @@ int main(int argc, char** argv){
     return 1;
   }
   else{
-    int result = bfs(graf, start);
-    if(result == 0)
-      printf("\nGraf jest spójny\n");
-    else
-      printf("\nGraf nie jest spójny\n");
-    
+    result = bfs(graf, start);
+
+    for(int i = 0; i < n; i++){
+      if(result[i] != BLACK){
+        printf("\nGraf jest spójny\n");
+        freegraph(graf);
+        free(graf);
+        free(result);
+        fclose(in);
+        return EXIT_FAILURE; 
+      }
+    }
+    printf("\nGraf nie jest spójny\n");
     freegraph(graf);
+    free(result);
     fclose(in);
   }
   return 0;
