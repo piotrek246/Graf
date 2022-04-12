@@ -45,9 +45,9 @@ test_pq: src/mpq.o
 	./test_pq
 	rm test_pq
 
-tests: test_pq test_FIFO test_graph test_dijkstra test_bfs
+test: test_pq test_FIFO test_graph test_dijkstra test_bfs
 
-test: graf read bfs dijkstra
+testg: graf read bfs dijkstra
 	./graf testgraf 7:4 0-1
 	./read testgraf
 	./bfs testgraf 0
