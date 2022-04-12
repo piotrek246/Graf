@@ -31,9 +31,13 @@ int main(int argc, char** argv){
   int start = atoi(argv[2]);
 
   struct Graph* graf = readgraph(in);
+  if(graf == NULL){
+    printf("Błędny format pliku\n");
+    return EXIT_FAILURE;
+  }
   int n = graf->w*graf->k;
 
-  if(start >= n){
+  if(start >= n || start < 0){
     printf("Podano numer węzła który nie należy do grafu\n");
     freegraph(graf);
     fclose(in);
@@ -50,7 +54,7 @@ int main(int argc, char** argv){
 
     for(int i = 0; i < n; i++){
       if(result[i] != BLACK){
-        printf("\nGraf jest spójny\n");
+        printf("\nGraf nie jest spójny\n");
         freegraph(graf);
         free(graf);
         free(result);
@@ -58,7 +62,7 @@ int main(int argc, char** argv){
         return EXIT_FAILURE; 
       }
     }
-    printf("\nGraf nie jest spójny\n");
+    printf("\nGraf jest spójny\n");
     freegraph(graf);
     free(result);
     fclose(in);
