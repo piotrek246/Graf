@@ -18,7 +18,6 @@ void printPath(int p[], int e){
 distance_parents dijkstra(Graph_t* graf, int s){
   int n = graf->k*graf->w;
   int u;
-  int *heapplace = malloc(sizeof(*heapplace)*n);
   int *p = malloc(sizeof(*p)*n);
   double *d = malloc(sizeof(*d)*n);
   distance_parents error;

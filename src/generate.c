@@ -140,6 +140,8 @@ int main(int argc, char**argv){
         
     if(dp.exit == 1){
       free(end);
+      free(dp.d);
+      free(dp.p);
       freegraph(graf);
       return EXIT_FAILURE;
     }
