@@ -72,7 +72,7 @@ int main(int argc, char**argv){
         }
       	struct Graph *graf = creategraph(k, w, min, max);
 
-        if(start >= graf->k*graf->w){
+        if(start >= graf->k*graf->w || start < 0){
           printf("Podano numer węzła który nie należy do grafu\n");
           freegraph(graf);
           return EXIT_FAILURE;
