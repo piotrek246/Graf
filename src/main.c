@@ -36,15 +36,15 @@ int main(int argc, char** argv){
     return EXIT_FAILURE;
   }  
   //sprawdza czy może pisać
-  FILE *out = fopen(argv[1], "r");
-  if(out != NULL){ 
+  //FILE *out = fopen(argv[1], "r");
+  /*if(out != NULL){ 
     printf("Nie mogę nadpisać\n");
     fclose(out);
     return EXIT_FAILURE;
-  }
-  else{
-    out = fopen(argv[1], "w");
-  }
+  }*/
+  //else{
+  FILE *out = fopen(argv[1], "w");
+  //}
   srand(time(NULL));
 	struct Graph *graf = creategraph(k, w, min, max);
 	printgraph(out, graf);
