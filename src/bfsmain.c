@@ -56,7 +56,7 @@ int main(int argc, char** argv){
       if(result[i] != BLACK){
         printf("\nGraf nie jest spójny\n");
         freegraph(graf);
-        free(graf);
+        //free(graf);
         free(result);
         fclose(in);
         return EXIT_FAILURE; 
