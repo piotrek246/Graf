@@ -113,7 +113,8 @@ int readgraph_test(FILE *in){
   //k:10, w:30, min:0 i max:2 to wartości które znajdują się w pliku
   //oczekuje, że przeczytany graf będzie taki jaki znajduje się w zadanym pliku
   for(; i < 10*30; i++){
-    if(graf->adjlist[i] == NULL)
+    tmp = graf->adjlist[i];
+    if(tmp == NULL)
       return 1;
     while(tmp != NULL){
       if(tmp->weight > 2 && tmp->weight < 0)
