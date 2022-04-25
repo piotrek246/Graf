@@ -33,6 +33,7 @@ int main(int argc, char** argv){
   struct Graph* graf = readgraph(in);
   if(graf == NULL){
     printf("Błędny format pliku\n");
+    fclose(in);
     return EXIT_FAILURE;
   }
   int n = graf->w*graf->k;
